@@ -33,7 +33,7 @@ for( let z = 0; z < items.length; z++ ){
 
     //popolo il container con le immagini
     const newImg = `
-    <div class="big-cont-foto active">
+    <div class="big-cont-foto">
             <img src="${thisItem}" alt="Img n ${z}">
             <div class="testo">
                 <h3>${scrittaPrincipale}</h3>
@@ -51,10 +51,51 @@ for( let z = 0; z < items.length; z++ ){
 
     //popolo il container con le immagini
     const newImg = `
-    <div class="little-cont-foto active">
+    <div class="little-cont-foto">
         <img src="${thisItem}" alt="Img n ${z}">
     </div>
     `;
     contLittleImg.innerHTML += newImg;
 }
+
+//active ad un elemento
+let activeImage = 0;
+const allBigImg = document.getElementsByClassName('big-cont-foto');
+const allLittleImg = document.getElementsByClassName('little-cont-foto');
+allBigImg[activeImage].classList.add('active');
+allLittleImg[activeImage].classList.add('active');
+
+const nextArrow = document.querySelector('.icon-2');
+nextArrow.addEventListener('click', function(){
+    allBigImg[activeImage].classList.remove('active');
+    allLittleImg[activeImage].classList.remove('active');
+
+    if( activeImage < items.length - 1){
+        activeImage++;
+    }else{
+        activeImage = 0;
+    }
+
+    allBigImg[activeImage].classList.add('active');
+    allLittleImg[activeImage].classList.add('active');
+
+}
+);
+
+const backArrow = document.querySelector('.icon-1');
+backArrow.addEventListener('click', function(){
+    allBigImg[activeImage].classList.remove('active');
+    allLittleImg[activeImage].classList.remove('active');
+
+    if( activeImage > 0){
+        activeImage--;
+    }else{
+        activeImage = items.length -1;
+    }
+
+    allBigImg[activeImage].classList.add('active');
+    allLittleImg[activeImage].classList.add('active');
+
+}
+);
 
